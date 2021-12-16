@@ -81,7 +81,7 @@ public class MainController implements Initializable {
     private void refreshTable() {
         service.saveAll();
         tasks= service.getTasks();
-        if (!tasks.isEmpty()) {
+        if (tasks !=null && !tasks.isEmpty()) {
             for(Task task : tasks) {
                 fieldTableView.getItems().add(task);
             }

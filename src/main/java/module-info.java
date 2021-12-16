@@ -8,6 +8,7 @@ module com.project.todolist {
     requires java.sql;
     requires javafx.graphics;
     requires mysql.connector.java;
+    requires org.xerial.sqlitejdbc;
 
     opens com.project.todolist to javafx.fxml;
     exports com.project.todolist;
