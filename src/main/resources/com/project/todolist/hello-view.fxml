@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="950.0" stylesheets="@../../../styles/base.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.todolist.controller.MainController">
+    <AnchorPane layoutY="26.0" prefHeight="675.0" prefWidth="188.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <children>
+            <Button mnemonicParsing="false" onAction="#addTask" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Add" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="100.0">
+                <font>
+                    <Font name="Calibri" size="14.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Edit" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="145.0">
+                <font>
+                    <Font name="Calibri" size="14.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Delete" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="190.0">
+                <font>
+                    <Font name="Calibri" size="14.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Delete All" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="235.0">
+                <font>
+                    <Font name="Calibri" size="14.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Sort ABC" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="280.0">
+                <font>
+                    <Font name="Calibri" size="14.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Sort DESC" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="325.0">
+                <font>
+                    <Font name="Calibri" size="14.0" />
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Select random" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="370.0">
+                <font>
+                    <Font name="Calibri" size="14.0" />
+                </font>
+            </Button>
+            <Label layoutX="60.0" layoutY="38.0" text="To Do List" textAlignment="CENTER" textFill="#dededede">
+                <font>
+                    <Font name="Calibri" size="20.0" />
+                </font>
+            </Label>
+         <Button layoutY="630.0" mnemonicParsing="false" onAction="#exitBtn" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Exit" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="630.0">
+
+             <font>
+               <Font name="Calibri" size="14.0" />
+            </font>
+         </Button>
+        </children>
+    </AnchorPane>
+   <AnchorPane layoutX="200.0" layoutY="25.0" prefHeight="675.0" prefWidth="746.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="25.0">
+      <children>
+      
+          <AnchorPane prefHeight="70.0" prefWidth="580.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+              <children>
+                  <DatePicker fx:id="fieldDatePicker" layoutX="290.0" layoutY="54.0" prefHeight="30.0" prefWidth="140.0" promptText="Select deadline" styleClass="input" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="54.0" />
+                  <TextField fx:id="fieldTaskName" focusTraversable="false" layoutY="-1.0" prefHeight="30.0" prefWidth="537.0" promptText="Enter task name" styleClass="input" stylesheets="@../../../styles/base.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                      <font>
+                          <Font size="14.0" />
+                      </font>
+                  </TextField>
+                  <TextField fx:id="fieldTimeToEnd" layoutX="440.0" layoutY="53.0" prefHeight="30.0" prefWidth="140.0" promptText="Time to end" styleClass="input" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="53.0">
+                      <font>
+                          <Font size="14.0" />
+                      </font>
+                  </TextField>
+                  <TextArea fx:id="fieldDescription" layoutX="5.0" layoutY="54.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="280.0" promptText="Enter description" styleClass="input-tx-area" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="298.0" AnchorPane.topAnchor="54.0">
+                      <font>
+                          <Font size="14.0" />
+                      </font>
+                  </TextArea>
+                  <TextField fx:id="fieldExecutor" layoutX="287.0" layoutY="102.0" prefHeight="30.0" prefWidth="286.0" promptText="Executor" styleClass="input" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="100.0">
+                      <font>
+                          <Font size="14.0" />
+                      </font>
+                  </TextField>
+              </children>
+          </AnchorPane>
+          <AnchorPane prefHeight="526.0" prefWidth="580.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="185.0">
+              <children>
+                  <TableView fx:id="fieldTableView" layoutY="39.0" prefHeight="500.0" prefWidth="500.0" styleClass="table-column-header" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="4.0">
+                      <columns>
+                        <TableColumn fx:id="fieldColumnId" minWidth="20.0" prefWidth="30.0" text="#" />
+                          <TableColumn fx:id="fieldColumnName" minWidth="150.0" prefWidth="150.0" text="Name" />
+                          <TableColumn fx:id="fieldColumnCreated" minWidth="120.0" prefWidth="120.0" text="Created" />
+                          <TableColumn fx:id="fieldColumnDeadLine" minWidth="120.0" prefWidth="120.0" text="Deadline" />
+                          <TableColumn fx:id="fieldColumnDescription" minWidth="150.0" prefWidth="150.0" text="Description" />
+                          <TableColumn fx:id="fieldColumnExecutor" minWidth="165.0" prefWidth="165.0" text="Executor" />
+                      </columns>
+                  </TableView>
+              </children>
+          </AnchorPane>
+      </children>
+   </AnchorPane>
+    <MenuBar fx:id="menuBar" layoutY="1.0" prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-1.0">
+        <menus>
+            <Menu fx:id="menuFile" mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#addTask" text="Close" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+               <Menu mnemonicParsing="false" text="Other Labs">
+                 <items>
+                   <MenuItem mnemonicParsing="false" text="Lab1" />
+                          <MenuItem mnemonicParsing="false" onAction="#otherLabs" text="Lab2" />
+                 </items>
+               </Menu>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+</AnchorPane>
