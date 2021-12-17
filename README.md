@@ -9,4 +9,5 @@ JavaFX 17 and Java 17
 ```
 ## After clone
 
-Open project in Intellij idea (recommended)
+Open project in Intellij IDEA (recommended)
+
