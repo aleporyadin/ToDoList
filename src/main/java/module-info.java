@@ -7,7 +7,6 @@ module com.project.todolist {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires javafx.graphics;
-    requires mysql.connector.java;
     requires org.xerial.sqlitejdbc;
 
     opens com.project.todolist to javafx.fxml;

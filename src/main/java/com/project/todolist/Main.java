@@ -2,18 +2,22 @@ package com.project.todolist;
 
 
 import com.project.todolist.service.Service;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
+
 import java.util.Optional;
+
 
 public class Main extends Application {
 
@@ -26,6 +30,9 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT); // WxH
         File file = new File("./src/main/resources/styles/base.css");
+        Service service = new Service();
+        Font.loadFont(getClass().getResourceAsStream("/Montserrat-ExtraLight.otf.ttf"), 12);
+
 
         stage.setMinWidth(WIDTH);
         stage.setMinHeight(HEIGHT);
@@ -37,6 +44,7 @@ public class Main extends Application {
             event.consume();
             exitBtn();
         });
+
 
         stage.setScene(scene);
         stage.show();

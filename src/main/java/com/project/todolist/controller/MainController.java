@@ -8,6 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -18,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -28,41 +31,33 @@ import com.project.todolist.entity.Task;
 
 import static com.project.todolist.service.Service.tasks;
 
+
 public class MainController implements Initializable {
-
-    public TextField fieldTaskName;
-    public TextField fieldTimeToEnd;
-    public TextArea fieldDescription;
-    public TextField fieldExecutor;
-    public DatePicker fieldDatePicker;
-    public TableView<Task> fieldTableView;
-    public TableColumn<Task, Integer> fieldColumnId;
-    public TableColumn<Task, String> fieldColumnName;
-    public TableColumn<Task, String> fieldColumnCreated;
-    public TableColumn<Task, String> fieldColumnDeadLine;
-    public TableColumn<Task, String> fieldColumnDescription;
-    public TableColumn<Task, String> fieldColumnExecutor;
-    public Service service= new Service();
-
-    @FXML
-    public MenuBar menuBar;
-
-    @FXML
-    public Menu menuFile;
-
-
-    @FXML
-    private Button button;
+    @FXML public TextField fieldTaskName;
+    @FXML public TextField fieldTimeToEnd;
+    @FXML public TextArea fieldDescription;
+    @FXML public TextField fieldExecutor;
+    @FXML public DatePicker fieldDatePicker;
+    @FXML public TableView<Task> fieldTableView;
+    @FXML public TableColumn<Task,Integer> fieldColumnId;
+    @FXML public TableColumn<Task, String> fieldColumnName;
+    @FXML public TableColumn<Task, String> fieldColumnCreated;
+    @FXML public TableColumn<Task, String> fieldColumnDeadLine;
+    @FXML public TableColumn<Task, String> fieldColumnDescription;
+    @FXML public TableColumn<Task, String> fieldColumnExecutor;
+    @FXML public MenuBar menuBar;
+    @FXML public Menu menuFile;
+    @FXML public ImageView logo;
+    @FXML private Button button;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Service service = new Service();
-        service.testInsert();
         if (fieldTableView.getItems().size() == 0)
             fieldTableView.setPlaceholder(new Label("No rows to display"));
         this.fieldDatePicker.setValue(LocalDate.now());
         this.fieldTimeToEnd.setText(String.valueOf(LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss"))));
+
     }
 
     public void exitBtn() {
@@ -79,14 +74,43 @@ public class MainController implements Initializable {
     }
 
     private void refreshTable() {
-        service.saveAll();
-        tasks= service.getTasks();
-        if (tasks !=null && !tasks.isEmpty()) {
-            for(Task task : tasks) {
+        Service service = new Service();
+        tasks = service.getTasks();
+
+        if (tasks != null && !tasks.isEmpty()) {
+            for (Task task : tasks) {
+
+//                ObservableList<Task> data = fieldTableView.getItems();
+//                data.add(task);
+
+
+                fieldTableView.getColumns().clear();
+                fieldColumnId = new TableColumn<Task, Integer>("#");
+                fieldColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+                fieldColumnName = new TableColumn<Task, String>("Name");
+                fieldColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+                fieldColumnCreated = new TableColumn<Task, String>("Created");
+                fieldColumnCreated.setCellValueFactory(new PropertyValueFactory<>("created"));
+
+                fieldColumnDeadLine = new TableColumn<Task, String>("DeadLine");
+                fieldColumnDeadLine.setCellValueFactory(new PropertyValueFactory<>("deadline"));
+
+                fieldColumnDescription = new TableColumn<Task, String>("Description");
+                fieldColumnDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+                fieldColumnExecutor = new TableColumn<Task, String>("Executor");
+                fieldColumnExecutor.setCellValueFactory(new PropertyValueFactory<>("executor"));
+                fieldTableView.getColumns().addAll(Arrays.asList(
+                        fieldColumnId, fieldColumnName,fieldColumnCreated,fieldColumnDeadLine,
+                        fieldColumnDescription,fieldColumnExecutor)
+                );
                 fieldTableView.getItems().add(task);
+               // fieldTableView.getColumns().add(fieldColumnId,fieldColumnName);
+
             }
-        }
-        else {
+        } else {
             fieldTableView.setPlaceholder(new Label("No rows to display"));
         }
     }
@@ -130,7 +154,7 @@ public class MainController implements Initializable {
             String executor;
             String description;
             String deadLine;
-
+            Service service = new Service();
             if (!fieldTaskName.getText().toString().isEmpty())
                 name = fieldTaskName.getText();
             else throw new Exception("Field {name} empty");
@@ -151,11 +175,12 @@ public class MainController implements Initializable {
 
             Task task = new Task(name, created, deadLine, executor, description);
 
+            service.saveTask(task);
 
-            tasks.add(task);
+
             refreshTable();
         } catch (Exception e) {
-            System.out.print("Add task failed"+e.getMessage());
+            System.out.print("Add task failed" + e.getMessage());
             e.printStackTrace();
         }
 

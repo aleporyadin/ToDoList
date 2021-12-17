@@ -49,7 +49,7 @@ public class Task {
     public void setCreated(String created) {
         this.created = created;
     }
-    public String getDeadLine() {
+    public String getDeadline() {
         return deadLine;
     }
     public void setDeadLine(String deadLine) {
