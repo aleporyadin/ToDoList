@@ -107,8 +107,8 @@ public class Service {
             conn = DriverManager.getConnection(url);
             stmt = conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM Task;");
+            tasks.clear();
             while (resultSet.next()) {
-                tasks.clear();
                 tasks.add(new Task(resultSet.getInt("ID"),
                         resultSet.getString("NAME"),
                         resultSet.getString("CREATED"),

@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import com.project.todolist.Main;
 import com.project.todolist.entity.Task;
@@ -56,7 +57,8 @@ public class MainController implements Initializable {
         if (fieldTableView.getItems().size() == 0)
             fieldTableView.setPlaceholder(new Label("No rows to display"));
         this.fieldDatePicker.setValue(LocalDate.now());
-        this.fieldTimeToEnd.setText(String.valueOf(LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm:ss"))));
+        this.fieldTimeToEnd.setText(String.valueOf(LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm"))));
+        refreshTable();
 
     }
 
@@ -76,7 +78,7 @@ public class MainController implements Initializable {
     private void refreshTable() {
         Service service = new Service();
         tasks = service.getTasks();
-
+        fieldTableView.getItems().clear();
         if (tasks != null && !tasks.isEmpty()) {
             for (Task task : tasks) {
 
@@ -150,35 +152,77 @@ public class MainController implements Initializable {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
         try {
-            String name;
-            String executor;
-            String description;
-            String deadLine;
-            Service service = new Service();
-            if (!fieldTaskName.getText().toString().isEmpty())
-                name = fieldTaskName.getText();
-            else throw new Exception("Field {name} empty");
+            String name = null;
+            String executor = null;
+            String description = null;
+            String deadLine = null;
 
             String created = dateFormat.format(new Date());
-            if (!fieldTaskName.getText().toString().isEmpty())
+
+            Service service = new Service();
+
+            Pattern pattern = null;
+
+            // check name
+            if (!fieldTaskName.getText().isBlank()) {
+                fieldTaskName.setStyle("-fx-border-color: #BEBEBE;");
+                name=fieldTaskName.getText();
+
+
+            }else{
+                fieldTaskName.setStyle("-fx-border-color: #660000;");
+                fieldTaskName.setPromptText("Invalid name task..");
+            }
+
+
+
+            // check date
+            if(fieldDatePicker.getValue()==null) {
+                fieldTimeToEnd.setPromptText("Invalid date..");
+                fieldDatePicker.setStyle("-fx-border-color: #660000;");
+            }else{
+                fieldDatePicker.setStyle("-fx-border-color: #BEBEBE;");
+            }
+
+            // check timetoend
+            if (!fieldTimeToEnd.getText().isBlank() &&
+                    Pattern.matches("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$",fieldTimeToEnd.getText().formatted("HH:mm:ss"))) {
                 deadLine = fieldDatePicker.getValue().format(formatter) + " " +
-                        fieldTimeToEnd.getText().formatted("HH:mm::ss");
-            else throw new Exception("Field {datepicker or time} empty");
+                        fieldTimeToEnd.getText().formatted("HH:mm:ss");
+                fieldTimeToEnd.setStyle("-fx-border-color: #BEBEBE;");
+            }
+            else {
+                fieldTimeToEnd.setPromptText("Invalid time..");
+                fieldTimeToEnd.setStyle("-fx-border-color: #660000;");
+            }
 
-            if (!fieldExecutor.getText().toString().isEmpty())
+
+            // check executor
+            if (!fieldExecutor.getText().toString().isEmpty()) {
                 executor = fieldExecutor.getText();
-            else throw new Exception("Field {executor} empty");
+                fieldExecutor.setStyle("-fx-border-color: #BEBEBE;");
+            }
+            else {
+                fieldExecutor.setPromptText("Invalid name executor..");
+                fieldExecutor.setStyle("-fx-border-color: #660000;");
+            }
 
-            if (!fieldDescription.getText().toString().isEmpty())
+            // check description
+            if (!fieldDescription.getText().toString().isEmpty()) {
+                fieldDescription.setStyle("-fx-border-color: #BEBEBE;");
                 description = fieldDescription.getText();
-            else throw new Exception("Field {description} empty");
+            }
+            else {
+                fieldDescription.setPromptText("Empty description..");
+                fieldDescription.setStyle("-fx-border-color: #660000;");
+            }
 
-            Task task = new Task(name, created, deadLine, executor, description);
-
-            service.saveTask(task);
-
-
+            if(name!=null&& created!=null&&deadLine!=null&&executor!=null&&description!=null){
+                Task task = new Task(name, created, deadLine, executor, description);
+                service.saveTask(task);
+            }
             refreshTable();
+
         } catch (Exception e) {
             System.out.print("Add task failed" + e.getMessage());
             e.printStackTrace();
