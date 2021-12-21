@@ -31,7 +31,6 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT); // WxH
         File file = new File("./src/main/resources/styles/base.css");
         Service service = new Service();
-        Font.loadFont(getClass().getResourceAsStream("/Montserrat-ExtraLight.otf.ttf"), 12);
 
 
         stage.setMinWidth(WIDTH);
@@ -39,7 +38,11 @@ public class Main extends Application {
 
         scene.getStylesheets().add(file.toURI().toString());
 
+
+
         stage.setTitle("[PrSoft] To do List");
+        stage.getIcons().add(new Image("D:\\Projects\\ToDoList\\src\\main\\resources\\icons\\icon.png"));
+        Font.loadFont(getClass().getResourceAsStream("/Montserrat-ExtraLight.otf.ttf"), 12);
         stage.setOnCloseRequest(event -> {
             event.consume();
             exitBtn();

@@ -3,14 +3,25 @@ package com.project.todolist.controller;
 
 import com.project.todolist.service.Service;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -21,14 +32,13 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import com.project.todolist.Main;
 import com.project.todolist.entity.Task;
+import javafx.stage.StageStyle;
+import javafx.util.Pair;
 
 import static com.project.todolist.service.Service.tasks;
 
@@ -50,7 +60,7 @@ public class MainController implements Initializable {
     @FXML public Menu menuFile;
     @FXML public ImageView logo;
     @FXML private Button button;
-
+    @FXML public  Button buttonEdit;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -217,7 +227,7 @@ public class MainController implements Initializable {
                 fieldDescription.setStyle("-fx-border-color: #660000;");
             }
 
-            if(name!=null&& created!=null&&deadLine!=null&&executor!=null&&description!=null){
+            if(name!=null && deadLine!=null && executor!=null && description!=null){
                 Task task = new Task(name, created, deadLine, executor, description);
                 service.saveTask(task);
             }
@@ -230,5 +240,8 @@ public class MainController implements Initializable {
 
     }
 
-
+    @FXML
+    public void editTask(ActionEvent actionEvent)  throws IOException {
+      // to do create to change
+    }
 }
