@@ -27,12 +27,12 @@
                     <Font name="Calibri" size="14.0" />
                 </font>
             </Button>
-            <Button layoutX="5.0" layoutY="277.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Delete" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="277.0">
+            <Button fx:id="buttonDelete" onAction="#deleteTask" layoutX="5.0" layoutY="277.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Delete" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="277.0">
                 <font>
                     <Font name="Calibri" size="14.0" />
                 </font>
             </Button>
-            <Button layoutX="5.0" layoutY="322.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Delete All" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="322.0">
+            <Button fx:id="buttonDeleteAll" onAction="#deleteAllTask" layoutX="5.0" layoutY="322.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" styleClass="btn" text="Delete All" textFill="#dfdfdf" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="322.0">
                 <font>
                     <Font name="Calibri" size="14.0" />
                 </font>

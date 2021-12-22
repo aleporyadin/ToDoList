@@ -23,6 +23,7 @@ public class Main extends Application {
 
     static final  int WIDTH = 950;
     static final  int HEIGHT = 700;
+    public Service service = new Service();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -30,7 +31,6 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT); // WxH
         File file = new File("./src/main/resources/styles/base.css");
-        Service service = new Service();
 
 
         stage.setMinWidth(WIDTH);
@@ -70,11 +70,11 @@ public class Main extends Application {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("labTest.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT); // WxH
+        File file = new File("./src/main/resources/styles/base.css");
 
         stage.setMinWidth(WIDTH);
         stage.setMinHeight(HEIGHT+35);
 
-        File file = new File("./src/main/resources/styles/base.css");
         scene.getStylesheets().add(file.toURI().toString());
 
         stage.setTitle("[PySoft] To do List");
@@ -88,5 +88,13 @@ public class Main extends Application {
     }
     public static void main(String[] args) {
         launch();
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
     }
 }

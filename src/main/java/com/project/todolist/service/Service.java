@@ -100,6 +100,49 @@ public class Service {
         if (tasks != null) saveTasks(tasks);
     }
 
+    public void cleanTable(){
+        try {
+            conn = DriverManager.getConnection(url);
+            stmt = conn.createStatement();
+            String sql = "DELETE  FROM Task;";
+            stmt.executeUpdate(sql);
+        } catch (Exception e) {
+            showLog("Delete task failed...", e);
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                showLog("Closing failed..", e);
+            }
+        }
+    }
+    public void delete(Task task){
+
+        try {
+            conn = DriverManager.getConnection(url);
+            stmt = conn.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM Task;");
+            if(task!=null){
+                tasks.remove(task);
+                String sql = "DELETE FROM task WHERE id = "+task.getId().toString();
+                stmt.executeUpdate(sql);
+                stmt.executeUpdate("UPDATE task set ID = (ID - 1) WHERE ID > "+task.getId());
+            }
+        } catch (Exception e) {
+            showLog("Delete task failed...", e);
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                showLog("Closing failed..", e);
+            }
+        }
+
+    }
     public ArrayList<Task> getTasks() {
 
         ArrayList<Task> tempArr = new ArrayList<Task>();

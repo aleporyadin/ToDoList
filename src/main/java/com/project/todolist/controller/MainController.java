@@ -7,21 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
+
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -37,8 +27,7 @@ import java.util.regex.Pattern;
 
 import com.project.todolist.Main;
 import com.project.todolist.entity.Task;
-import javafx.stage.StageStyle;
-import javafx.util.Pair;
+
 
 import static com.project.todolist.service.Service.tasks;
 
@@ -59,8 +48,10 @@ public class MainController implements Initializable {
     @FXML public MenuBar menuBar;
     @FXML public Menu menuFile;
     @FXML public ImageView logo;
+    public Button buttonDelete;
     @FXML private Button button;
     @FXML public  Button buttonEdit;
+    private Service service = new Service();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -86,7 +77,6 @@ public class MainController implements Initializable {
     }
 
     private void refreshTable() {
-        Service service = new Service();
         tasks = service.getTasks();
         fieldTableView.getItems().clear();
         if (tasks != null && !tasks.isEmpty()) {
@@ -169,7 +159,6 @@ public class MainController implements Initializable {
 
             String created = dateFormat.format(new Date());
 
-            Service service = new Service();
 
             Pattern pattern = null;
 
@@ -230,6 +219,10 @@ public class MainController implements Initializable {
             if(name!=null && deadLine!=null && executor!=null && description!=null){
                 Task task = new Task(name, created, deadLine, executor, description);
                 service.saveTask(task);
+
+                fieldTaskName.setText("");
+                fieldDescription.setText("");
+                fieldExecutor.setText("");
             }
             refreshTable();
 
@@ -242,6 +235,61 @@ public class MainController implements Initializable {
 
     @FXML
     public void editTask(ActionEvent actionEvent)  throws IOException {
-      // to do create to change
+//
+//
+//        Stage secondWindows = new Stage();
+//
+//        StackPane secondaryLayout = new StackPane();
+//
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("edit-view.fxml"));
+//
+//        Parent root1 = (Parent) fxmlLoader.load();
+//        Scene secondScene = new Scene(root1);
+//
+//        Label secondLabel = new Label("Edit Task");
+//
+//        File file = new File("./src/main/resources/styles/base.css");
+//        secondScene.getStylesheets().add(file.toURI().toString());
+//
+//        Node node = (Node) actionEvent.getSource();
+//        Stage thisStage = (Stage) node.getScene().getWindow();
+//
+//        secondaryLayout.getChildren().add(secondLabel);
+//
+//        // New window (Stage)
+//        secondWindows.setTitle("Second Stage");
+//        secondWindows.setScene(secondScene);
+//
+//        // Specifies the modality for new window.
+//        secondWindows.initModality(Modality.WINDOW_MODAL);
+//
+//        // Specifies the owner Window (parent) for new window
+//        secondWindows.initOwner(thisStage);
+//
+//        // Set position of second window, related to primary window.
+//        secondWindows.setX(thisStage.getX() + ((Main.getWIDTH()>>1)-150) );
+//        secondWindows.setY(thisStage.getY() +20);
+//
+//        secondWindows.show();
+    }
+    @FXML
+    public void deleteTask(ActionEvent actionEvent) throws IOException{
+        Task task = fieldTableView.getSelectionModel().getSelectedItem();
+        service.delete(task);
+        refreshTable();
+    }
+    @FXML
+    public void deleteAllTask(ActionEvent actionEvent) throws IOException{
+
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+                "You want to delete ALL tasks?",
+                ButtonType.YES, ButtonType.NO);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (ButtonType.YES == result.get()){
+            tasks.clear();
+            service.cleanTable();
+        }
+        refreshTable();
     }
 }
