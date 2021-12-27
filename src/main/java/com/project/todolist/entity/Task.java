@@ -1,5 +1,7 @@
 package com.project.todolist.entity;
 
+import java.time.LocalDate;
+
 public class Task {
 
     private Integer id;
@@ -8,7 +10,6 @@ public class Task {
     private String deadLine;
     private String executor;
     private String description;
-
 
     public Task(Integer _id, String taskName, String taskCreated, String taskDeadLine, String executor, String description) {
         this.id=_id;

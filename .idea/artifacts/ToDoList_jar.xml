@@ -53,8 +53,6 @@
       <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:win:18-ea+8" />
       <element id="library" level="project" name="Maven: org.openjfx:javafx-base:18-ea+8" />
       <element id="library" level="project" name="Maven: org.openjfx:javafx-base:win:18-ea+8" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:18-ea+8" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:win:18-ea+8" />
       <element id="library" level="project" name="Maven: org.controlsfx:controlsfx:11.1.1" />
       <element id="library" level="project" name="Maven: com.dlsc.formsfx:formsfx-core:11.4.2" />
       <element id="library" level="project" name="Maven: org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0" />
@@ -91,6 +89,8 @@
       <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-compiler-api:2.8.4" />
       <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-compiler-manager:2.8.4" />
       <element id="library" level="project" name="Maven: org.codehaus.plexus:plexus-compiler-javac:2.8.4" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:win:17.0.1" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:17.0.1" />
     </root>
   </artifact>
 </component>

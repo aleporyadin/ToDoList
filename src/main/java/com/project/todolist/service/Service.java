@@ -39,7 +39,6 @@ public class Service {
     }
 
     private void createTable() {
-
         try {
             conn = DriverManager.getConnection(url);
             stmt = conn.createStatement();
@@ -50,7 +49,12 @@ public class Service {
                             " CREATED     varchar(50)     NOT NULL,   " +
                             " DEADLINE    varchar(50)     NOT NULL,   " +
                             " EXECUTOR    varchar(50)     NOT NULL,   " +
-                            " DESCRIPTION varchar(500)    NOT NULL);");
+                            " DESCRIPTION varchar(500)    NOT NULL);" +
+                            "CREATE TABLE IF NOT EXISTS user " +
+                            "(ID          INTEGER         NOT NULL    PRIMARY KEY,  " +
+                            " FULLNAME        varchar(50)     NOT NULL,   " +
+                            " LOGIN     varchar(50)     NOT NULL,   " +
+                            " PASSWORD    varchar(50)     NOT NULL);" );
             stmt.close();
             showLog("Table create `task` successfully");
         } catch (SQLException e) {

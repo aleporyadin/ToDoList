@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.project.todolist.controller.EditTaskController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0"
+            stylesheets="@../../../styles/base.css" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.todolist.controller.EditTaskController">
 
+
+    <AnchorPane prefHeight="302.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <Text layoutX="121.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter new data">
+                <font>
+                    <Font size="24.0"/>
+                </font>
+            </Text>
+
+            <DatePicker fx:id="secondFieldDatePicker" layoutX="50.0" layoutY="285.0" prefHeight="30.0" prefWidth="118.0"
+                        promptText="Select deadline" styleClass="input" AnchorPane.leftAnchor="30.0"
+                        AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="285.0"/>
+            <TextField fx:id="secondFieldTaskName" focusTraversable="false" layoutX="50.0" layoutY="85.0"
+                       prefHeight="30.0" prefWidth="493.0" promptText="Enter task name" styleClass="input"
+                       stylesheets="@../../../styles/base.css" AnchorPane.leftAnchor="30.0"
+                       AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="85.0">
+
+            </TextField>
+            <TextField fx:id="secondFieldTimeToEnd" layoutX="210.0" layoutY="285.0" prefHeight="30.0" prefWidth="110.0"
+                       promptText="Time to end" styleClass="input" AnchorPane.leftAnchor="210.0"
+                       AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="285.0">
+
+            </TextField>
+            <TextArea fx:id="secondFieldDescription" layoutX="50.0" layoutY="135.0" minHeight="-Infinity"
+                      minWidth="-Infinity" prefHeight="30.0" prefWidth="307.0" promptText="Enter description"
+                      AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="135.0">
+
+
+            </TextArea>
+            <TextField fx:id="secondFieldExecutor" layoutX="50.0" layoutY="185.0" prefHeight="30.0" prefWidth="286.0"
+                       promptText="Executor" styleClass="input" AnchorPane.leftAnchor="30.0"
+                       AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="185.0">
+
+            </TextField>
+            <DatePicker fx:id="secondFieldDatePickerCreated" layoutX="50.0" layoutY="235.0" prefHeight="30.0"
+                        prefWidth="118.0" promptText="Select created" styleClass="input" AnchorPane.leftAnchor="30.0"
+                        AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="235.0"/>
+
+            <TextField fx:id="secondFieldTimeCreated" layoutX="210.0" layoutY="235.0" prefHeight="30.0" prefWidth="110.0"
+                       promptText="Time of creation" styleClass="input" AnchorPane.leftAnchor="210.0"
+                       AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="235.0"/>
+
+            <Button fx:id="secondButtonConfirm" onAction="#buttonConfirm" layoutX="30.0" layoutY="322.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="170.0"
+                    text="Apply" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0"
+                    AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="335.0"/>
+            <Button fx:id="secondButtonCancel" onAction="#buttonCancel" layoutX="212.0" layoutY="335.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="158.0"
+                    text="Cansel" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="210.0"
+                    AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="335.0"/>
+
+        </children>
+    </AnchorPane>
 </AnchorPane>
